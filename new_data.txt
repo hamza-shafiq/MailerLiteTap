@@ -1,0 +1,6 @@
+{"type": "SCHEMA", "stream": "subscribers", "schema": {"properties": {"id": {"description": "The subscriber's ID", "type": ["integer", "null"]}, "name": {"description": "The subscriber's name", "type": ["string", "null"]}, "email": {"description": "The subscriber's email address", "type": ["string", "null"]}}, "type": "object"}, "key_properties": ["id"]}
+{"type": "RECORD", "stream": "subscribers", "record": {"id": 55000432537240751, "name": "second subscriber", "email": "second@gmail.com"}, "time_extracted": "2022-05-14T04:57:57.956903Z"}
+{"type": "STATE", "value": {"bookmarks": {"subscribers": {"starting_replication_value": null}}}}
+{"type": "RECORD", "stream": "subscribers", "record": {"id": 54934182727517638, "name": "John", "email": "john@gmail.com"}, "time_extracted": "2022-05-14T04:57:57.957154Z"}
+{"type": "RECORD", "stream": "subscribers", "record": {"id": 54911991086581252, "name": "Hamza Shafique", "email": "hamzashafique054@gmail.com"}, "time_extracted": "2022-05-14T04:57:57.957275Z"}
+{"type": "STATE", "value": {"bookmarks": {"subscribers": {}}}}

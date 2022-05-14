@@ -1,0 +1,11 @@
+argcomplete==2.0.0
+jsonschema==2.6.0
+pendulum==1.2.0
+pipx==1.0.0
+pytz-deprecation-shim==0.1.0.post0
+singer-python==2.1.4
+tap-mailerlite==0.0.1
+target-csv==0.3.0
+tzdata==2022.1
+tzlocal==4.2
+userpath==1.8.0
