@@ -1,7 +1,6 @@
 """REST client handling, including MailerLiteStream base class."""
 
 import requests
-from pathlib import Path
 from typing import Any, Dict, Optional, Union, List, Iterable
 
 from memoization import cached
@@ -9,9 +8,6 @@ from memoization import cached
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.streams import RESTStream
 from singer_sdk.authenticators import APIKeyAuthenticator
-
-
-# SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 
 class MailerLiteStream(RESTStream):
@@ -37,14 +33,11 @@ class MailerLiteStream(RESTStream):
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
         # If not using an authenticator, you may also provide inline auth headers:
-        # headers["Private-Token"] = self.config.get("mailer_lite_auth_token")
+        # headers["X-MailerLite-ApiKey"] = self.config.get("mailer_lite_auth_token")
         return headers
 
     def get_next_page_token(self, response: requests.Response, previous_token: Optional[Any]) -> Optional[Any]:
         """Return a token for identifying next page or None if no more pages."""
-        # TDO: If pagination is required, return a token which can be used to get the
-        #       next page. If this is the final page, return "None" to end the
-        #       pagination loop.
         if self.next_page_token_jsonpath:
             all_matches = extract_jsonpath(
                 self.next_page_token_jsonpath, response.json()
@@ -69,10 +62,4 @@ class MailerLiteStream(RESTStream):
 
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
-        # TDO: Parse response body and return a set of records.
         yield from extract_jsonpath(self.records_jsonpath, input=response.json())
-
-    def post_process(self, row: dict, context: Optional[dict]) -> dict:
-        """As needed, append or transform raw data to match expected structure."""
-        # TDO: Delete this method if not needed.
-        return row
